@@ -890,6 +890,8 @@ void WaveshareEPaper7P5InV2::dump_config() {
 }
 
 void WaveshareEPaper7P5InHD::initialize() {
+  this->reset_();
+
   this->wait_until_idle_();
   this->command(0x12);
   this->wait_until_idle_();
