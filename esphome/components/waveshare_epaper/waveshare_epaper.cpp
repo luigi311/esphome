@@ -948,15 +948,19 @@ void WaveshareEPaper7P5InHD::initialize() {
 void HOT WaveshareEPaper7P5InHD::display() {
   uint32_t buf_len = this->get_buffer_length_();
   // COMMAND DATA START TRANSMISSION NEW DATA
-  this->command(0x13);
-  delay(2);
+  this->command(0x4F);
+  this->data(0x00);
+  this->data(0x00);
+  this->command(0x24);
   for (uint32_t i = 0; i < buf_len; i++) {
     this->data(~(this->buffer_[i]));
   }
 
   // COMMAND DISPLAY REFRESH
-  this->command(0x12);
-  delay(100);  // NOLINT
+  this->command(0x22);
+  this->data(0xF7);
+  this->command(0x20);
+  delay(10);
   this->wait_until_idle_();
 }
 
