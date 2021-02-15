@@ -953,7 +953,7 @@ void HOT WaveshareEPaper7P5InHD::display() {
   this->data(0x00);
   this->command(0x24);
   for (uint32_t i = 0; i < buf_len; i++) {
-    this->data(~(this->buffer_[i]));
+    this->data(this->buffer_[i]);
   }
 
   // COMMAND DISPLAY REFRESH
